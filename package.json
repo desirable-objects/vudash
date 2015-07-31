@@ -1,0 +1,19 @@
+{
+  "name": "vudash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon --harmony -e js,html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "^3.0.3",
+    "hapi": "^8.8.1",
+    "joi": "^6.6.1",
+    "lodash-node": "^3.10.0",
+    "minigrid": "^1.3.0"
+  }
+}
