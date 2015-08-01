@@ -36,7 +36,7 @@ npm run watch // development, reloading
 node app.js // production
 ```
 
-You can visit your dashboards at http://localhost:8000/&lt;name&gt;.dash where &lt;name&gt; is your dashboard name (in this example, 'sample.dashboard')
+You can visit your dashboards at http://localhost:8000/&lt;name&gt;.dashboard where &lt;name&gt; is your dashboard name (in this example, 'sample.dashboard')
 
 # testing
 There aren't any, it's a prototype. I don't know what I want it to do yet.
