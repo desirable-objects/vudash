@@ -49,7 +49,7 @@ module.exports = {
     }
   },
   job: {
-    schedule: 30000,
+    schedule: 1000 * 60 * 5,
     variables: {
       name: 'Contentful',
       uri: 'http://status.contentful.com'

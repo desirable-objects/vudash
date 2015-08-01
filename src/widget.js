@@ -38,23 +38,25 @@ var Widget = function(name, options, socket) {
     sch = validated;
     sch.id = '_'+shortid.generate();
 
-    sch.runner = setInterval(function() {
-
-      function emit(data) {
-        try {
-          socket.emit(sch.id, data);
-        } catch (e) {
-          console.error(sch.id, 'tried to broadcast, but no client was connected');
-        }
+    function emit(data) {
+      try {
+        socket.emit(sch.id, data);
+      } catch (e) {
+        console.error(sch.id, 'tried to broadcast, but no client was connected');
       }
+    }
 
+    function execute() {
       try {
         sch.job.script(emit, sch);
       } catch (e) {
         console.error(`Widget ${name}(${sch.id}) caused an error during update job.`, e);
       }
+    }
 
-    }, sch.job.schedule);
+    execute();
+
+    sch.runner = setInterval(execute, sch.job.schedule);
 
   });
 
