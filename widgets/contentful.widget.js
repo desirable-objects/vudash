@@ -1,6 +1,6 @@
 module.exports = {
   dimensions: {
-    rows: 1.5,
+    rows: 1.2,
     columns: 2
   },
   template: {
@@ -49,7 +49,7 @@ module.exports = {
     }
   },
   job: {
-    schedule: 1000 * 60 * 5,
+    schedule: 1000 * 30,
     variables: {
       name: 'Contentful',
       uri: 'http://status.contentful.com'

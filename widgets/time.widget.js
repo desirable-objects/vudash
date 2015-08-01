@@ -6,16 +6,23 @@ module.exports = {
     columns: 1
   },
   template: {
-    html: '<div class="test">{{time}}</div>',
-    css: '.test { font-size: 30px; }',
+    html: `
+      <span class="date">{{date}}</span>
+      <span class="time">{{time}}</span>
+    `,
+    css: '.date, .time { display: block; font-size: 40px; }',
     model: {
-      time: new Date()
+      time: new Date(),
+      date: new Date()
     }
   },
   job: {
     schedule: 1000,
     script: function(emit) {
-      emit({time: moment().format('MMMM Do YYYY, h:mm:ss a').toString()});
+      emit({
+        date: moment().format('h:mm:ss a').toString(),
+        time: moment().format('MMMM Do YYYY').toString()
+      });
     }
   }
 }

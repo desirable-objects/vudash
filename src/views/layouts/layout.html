@@ -6,7 +6,7 @@
     <script src="/assets/blocks/blocks.min.js"></script>
     <script src="/assets/moment/min/moment.min.js"></script>
     <script>
-      var socket = io(window.location.hostname);
+      var socket = io(window.location.hostname + ':' + window.location.port);
       var app = blocks.Application();
     </script>
     <style type="text/css">
@@ -14,6 +14,7 @@
       body {
         background-color: #191919;
         font-family: Ubuntu, Verdana, Tahoma, Arial;
+        margin: 0;
       }
 
       h3 {
