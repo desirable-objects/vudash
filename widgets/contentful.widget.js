@@ -1,7 +1,3 @@
-var request = require('request'),
-    cheerio = require('cheerio'),
-    moment = require('moment');
-
 module.exports = {
   dimensions: {
     rows: 1.5,
@@ -10,7 +6,7 @@ module.exports = {
   template: {
     html: `
       <div class="api-status">
-        <h3>Contentful API</h3>
+        <h3>{{name}} API</h3>
         <dl class="api-status__list" data-query="each(components)">
           <dt class="api-status__list--component">{{component}}</dt>
           <dd class="api-status__list--status">{{status}}</dd>
@@ -48,20 +44,37 @@ module.exports = {
       }
     `,
     model: {
-      components: [{component: 'Content Management Status', status: 'Unknown'}]
+      name: 'Unknown',
+      components: [{component: 'API Status', status: 'Waiting...'}]
     }
   },
   job: {
     schedule: 30000,
-    script: function(emit) {
+    variables: {
+      name: 'Contentful',
+      uri: 'http://status.contentful.com'
+    },
+    script: function(emit, widget) {
+
+      var request = require('request'),
+      cheerio = require('cheerio'),
+      moment = require('moment');
+
+      process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
       request({
-        uri: 'http://status.contentful.com'
+        uri: widget.job.variables.uri
       }, function(err, response, body) {
+
+        if (err) {
+          console.error(err);
+          return;
+        }
 
         var $ = cheerio.load(body);
         var healthy = $('.page-status').hasClass('status-none');
         var payload = {
+          name: widget.job.variables.name,
           background: healthy ? 'green' : 'red',
           components: []
         };

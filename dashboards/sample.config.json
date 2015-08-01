@@ -17,6 +17,9 @@
     },
     {
       "widget": "contentful"
+    },
+    {
+      "widget": "stormpath"
     }
   ]
 }

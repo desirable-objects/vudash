@@ -1,21 +1,22 @@
 var Joi = require('joi'),
-    shortid = require('shortid');
-
+    shortid = require('shortid'),
+    _ = require('lodash-node');
     shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_$');
 
 var schema = Joi.object().keys({
   extends: Joi.string().optional(),
-  dimensions: Joi.object().required().keys({
+  dimensions: Joi.object().optional().keys({
     rows: Joi.number().required(),
     columns: Joi.number().required()
   }),
-  template: Joi.object().required().keys({
+  template: Joi.object().optional().keys({
     html: Joi.string().required(),
     css: Joi.string().optional(),
     model: Joi.object().optional()
   }),
-  job: Joi.object().required().keys({
+  job: Joi.object().optional().keys({
     schedule: Joi.number().optional().min(1000),
+    variables: Joi.object().optional(),
     script: Joi.func().optional()
   })
 }).or('extends', 'dimensions')
@@ -23,7 +24,7 @@ var schema = Joi.object().keys({
 .or('extends', 'template')
 .or('extends', 'job');
 
-var Widget = function(options, socket) {
+var Widget = function(name, options, socket) {
 
   var sch;
 
@@ -36,6 +37,7 @@ var Widget = function(options, socket) {
 
     sch = validated;
     sch.id = '_'+shortid.generate();
+
     sch.runner = setInterval(function() {
 
       function emit(data) {
@@ -46,7 +48,11 @@ var Widget = function(options, socket) {
         }
       }
 
-      sch.job.script(emit, sch);
+      try {
+        sch.job.script(emit, sch);
+      } catch (e) {
+        console.error(`Widget ${name}(${sch.id}) caused an error during update job.`, e);
+      }
 
     }, sch.job.schedule);
 

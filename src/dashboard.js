@@ -33,7 +33,13 @@ var Dashboard = function(options, available) {
 
     _.each(validated.widgets, function(definition) {
       var widget = available[definition.widget];
-      dashboard.widgets.push(widget);
+
+      if (widget) {
+        dashboard.widgets.push(widget);
+      } else {
+        console.error('Widget specified in dashboard, but was not available', definition.widget);
+      }
+
     });
 
   });

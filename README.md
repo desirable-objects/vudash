@@ -77,13 +77,61 @@ module.exports = {
   },
   job: {
     schedule: 1000, // How many ms should we run the update job
-    script: function(emit) { // update job
-      emit({time: moment().format('MMMM Do YYYY, h:mm:ss a').toString()});
+    variables: { // variables available to script
+      dateFormat: 'MMMM Do YYYY, h:mm:ss a'
+    },
+    script: function(emit, widget) { // update job
+      emit({time: moment().format(widget.job.variables.dateFormat).toString()});
       // we 'emit' a key/value map which is bound to the view model (above)
     }
   }
 }
 ```
+
+## Job scripts
+
+The job.script function is the actual worker which prepares the data you want to display in a widget.
+
+It recieves two things:
+- The emit function, which is used to send data to the client
+- A copy of the augmented widget object (i.e. itself, with things like .id (the widget's dynamic unique id) added onto it by the loader)
+
+## Extending an existing widget
+
+Another important reason for the 'widget' reference mentioned above, is that when using 'extend' you can simply reference variables from here to differentiate your objects, i.e:
+
+```
+// blue.widget.js
+module.exports = {
+  ...
+  job: {
+      schedule: 1000,
+      variables: {
+        colour: 'blue'
+      },
+      script: function(emit, widget) {
+        emit({colour: widget.job.variables.colour})
+      }
+  }
+}
+// emits {colour: 'blue'}
+```
+
+```
+// yellow.widget.js
+module.exports = {
+  extends: 'blue',
+  job: {
+    variables: {
+      colour: 'yellow'
+    }
+  }
+}
+// emits {colour: 'yellow'}
+```
+
+Note use of the extends: 'blue' attribute.
+You can now happily use yellow in your dashboard, it will inherit everything you don't specify from 'blue'.
 
 # widget events
 

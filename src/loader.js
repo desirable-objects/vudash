@@ -16,10 +16,25 @@ var register = function (server, options, next) {
 
     var ws = server.plugins.websocket.socket;
 
+    function loadWidget(name) {
+      return require(Path.join(__dirname, '..', 'widgets', `${name}.widget.js`));
+    }
+
     _.each(files, function(widget) {
-      var name = widget.split('\.')[0];
-      var options = require(Path.join(__dirname, '..', 'widgets', widget));
-      widgets[name] = new Widget(options, ws);
+
+      if (_.endsWith(widget, '.widget.js')) {
+
+        var name = widget.split('\.')[0];
+        var options = loadWidget(name);
+
+        if (options.extends) {
+          var base = loadWidget(options.extends);
+          options = _.defaultsDeep(options, base);
+        }
+
+        widgets[name] = new Widget(name, options, ws);
+
+      }
     });
 
     server.expose('available', widgets);

@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script src="/assets/minigrid/index.js"></script>
+    <script src="/assets/masonry-layout/dist/masonry.pkgd.min.js"></script>
     <script src="/assets/socket.io-client/socket.io.js"></script>
     <script src="/assets/lodash/index.js"></script>
     <script src="/assets/blocks/blocks.min.js"></script>
@@ -28,7 +28,6 @@
 
       .grid-item {
         transition: background-color 0.5s ease;
-        position: absolute;
         background-color: #313131;
         color: #add8e6;
         display: flex;
@@ -53,14 +52,6 @@
   </head>
   <body>
     {{{content}}}
-    <script>
-      function updateGrid() {
-          minigrid('.grid', '.grid-item', {{dashboard.layout.gutter}});
-      };
-
-      window.addEventListener('resize', updateGrid);
-      updateGrid();
-    </script>
     <script>
 
       var updateds = document.querySelectorAll('*[data-last-updated]');

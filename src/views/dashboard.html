@@ -1,5 +1,10 @@
 <style type="text/css">
 {{{css}}}
+
+.grid-item {
+  margin-bottom: {{dashboard.layout.gutter}}px;
+}
+
 </style>
 
 <div class="grid">
@@ -50,3 +55,11 @@
   </div>
 {{/each}}
 </div>
+
+<script>
+  var elem = document.querySelector('.grid');
+  var msnry = new Masonry( elem, {
+    itemSelector: '.grid-item',
+    gutter: {{dashboard.layout.gutter}}
+  });
+</script>
