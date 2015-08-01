@@ -15,7 +15,8 @@ server.views({
   path: Path.join(__dirname, 'views'),
   layoutPath: Path.join(__dirname, 'views/layouts'),
   layout: true,
-  context: {_wsUrl: 'http://localhost:8011' }
+  context: {_wsUrl: 'http://localhost:8011' },
+  helpersPath: Path.join(__dirname, 'views/helpers'),
 });
 
 server.route({

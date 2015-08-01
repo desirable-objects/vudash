@@ -15,6 +15,9 @@ It's a prototype, an alpha. Treat it as such. It does work predictably though.
 
 # features
 - es6 (for multiline strings, mostly!)
+- all cross-origin requests done server side
+- websockets rather than polling
+- websocket fallback to long-poll when sockets aren't available
 - Custom widgets
 - Custom dashboards
 - Simple flow layout

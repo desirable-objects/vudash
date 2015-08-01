@@ -9,13 +9,13 @@
 
   var Model = app.Model({
     {{#each this.template.model}}
-      {{@key}}: blocks.observable(),
+  {{@key}}: blocks.observable([]),
     {{/each}}
   });
 
   app.View("{{this.id}}", Model({
     {{#each this.template.model}}
-      {{@key}}: "{{this}}",
+      {{@key}}: {{{valuerender this}}},
     {{/each}}
   }));
 
@@ -27,7 +27,14 @@
     document.getElementById("{{this.id}}").style.background = background;
 
     _.each(data, function(val, key) {
-      app["{{this.id}}"][key](val);
+      if (typeof val === 'object') {
+        app["{{this.id}}"][key].reset();
+        _.each(val, function(item) {
+          app["{{this.id}}"][key].push(item);
+        });
+      } else {
+        app["{{this.id}}"][key](val);
+      }
     });
 
   });
