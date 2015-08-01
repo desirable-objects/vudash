@@ -14,6 +14,7 @@ A dashboard like dashing, but written in node, with less bumf.
 It's a prototype, an alpha. Treat it as such. It does work predictably though.
 
 # features
+- es6 (for multiline strings, mostly!)
 - Custom widgets
 - Custom dashboards
 - Simple flow layout
@@ -52,8 +53,12 @@ module.exports = {
     width: 25 // percent
   },
   template: {
-    html: '<div class="test">{{time}}</div>', // the widget's htm, sits inside a .grid-item div.
-    css: '.test { font-size: 30px; }', // css specific to the widget, careful not to conflict
+    html: `
+     <div class="test">
+      {{time}}
+     </div>
+    `, // the widget's htm, sits inside a .grid-item div.
+    css: `.test { font-size: 30px; }`, // css specific to the widget, careful not to conflict
     model: { // blocks.js view model
       time: new Date() // property binding, and initial value
     }
