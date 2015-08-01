@@ -9,7 +9,7 @@
 
   var Model = app.Model({
     {{#each this.template.model}}
-  {{@key}}: blocks.observable([]),
+      {{@key}}: blocks.observable([]),
     {{/each}}
   });
 
@@ -40,7 +40,7 @@
   });
   </script>
 
-  <div data-query="view({{this.id}})" id="{{this.id}}" class="grid-item" style="height: {{this.dimensions.height}}%; width: {{this.dimensions.width}}%">
+  <div data-query="view({{this.id}})" id="{{this.id}}" class="grid-item" style="{{autoscale ../dashboard.layout this.dimensions}}">
     <div class="grid-item--top"></div>
     <div class="grid-item--content">
       {{{this.template.html}}}

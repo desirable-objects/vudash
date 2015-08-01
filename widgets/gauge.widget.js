@@ -2,11 +2,11 @@
 
 module.exports = {
   dimensions: {
-    height: 25,
-    width: 25
+    rows: 1,
+    columns: 1
   },
   template: {
-    html: `<div class="gauge-widget">
+    html: `<h3>Interest</h3><div class="gauge-widget">
     <div class="gauge percentage" data-query="setClass('overload', overload)">
     <div class="meter" data-query="css('transform', rotation)"></div>
     <div class="percentage-container">

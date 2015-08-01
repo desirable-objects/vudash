@@ -3,11 +3,12 @@ var request = require('request'),
 
 module.exports = {
   dimensions: {
-    height: 33,
-    width: 50
+    rows: 1.5,
+    columns: 2
   },
   template: {
     html: `
+      <h3>Contentful API</h3>
       <dl class="api-status" data-query="each(components)">
         <dt class="api-status--component">{{component}}</dt>
         <dd class="api-status--status">{{status}}</dd>

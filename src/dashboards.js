@@ -12,7 +12,7 @@ var register = function (server, options, next) {
 
   server.route({
     method: 'GET',
-    path: '/{dashboard}.dash',
+    path: '/{dashboard}.dashboard',
     config: {
       validate: {
         params: {

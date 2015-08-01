@@ -2,8 +2,8 @@ var moment = require('moment');
 
 module.exports = {
   dimensions: {
-    height: 25,
-    width: 25
+    rows: 1,
+    columns: 1
   },
   template: {
     html: '<div class="test">{{time}}</div>',

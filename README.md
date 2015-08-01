@@ -36,7 +36,7 @@ npm run watch // development, reloading
 node app.js // production
 ```
 
-You can visit your dashboards at http://localhost:8000/&lt;name&gt;.dash where &lt;name&gt; is your dashboard name (in this example, 'dash.dash')
+You can visit your dashboards at http://localhost:8000/&lt;name&gt;.dash where &lt;name&gt; is your dashboard name (in this example, 'sample.dashboard')
 
 # testing
 There aren't any, it's a prototype. I don't know what I want it to do yet.
@@ -57,8 +57,8 @@ var moment = require('moment');
 
 module.exports = {
   dimensions: {
-    height: 25, // percent
-    width: 25 // percent
+    rows: 1, // number of layout rows to consume. Can be fractional
+    columns: 1 // number of layout columns to consume. Can be fractional
   },
   template: {
     html: `
@@ -66,7 +66,11 @@ module.exports = {
       {{time}}
      </div>
     `, // the widget's htm, sits inside a .grid-item div.
-    css: `.test { font-size: 30px; }`, // css specific to the widget, careful not to conflict
+    css: `
+    .test {
+      font-size: 30px;
+    }
+    `, // css specific to the widget, careful not to conflict
     model: { // blocks.js view model
       time: new Date() // property binding, and initial value
     }
@@ -83,9 +87,19 @@ module.exports = {
 
 # define a dashboard
 ```js
-[{
-  "widget": "time" // time is the name of the widget above
-}] // array of config objects which currently can only name a widget.
+{
+  "layout": {
+    "width": 1920, // dashboard width in pixels
+    "height": 1080, // dashboard height in pixels
+    "columns": 6, // number of columns
+    "rows": 4 // number of rows
+  },
+  "widgets": [
+    {
+      "widget": "time" // time is the name of the widget above
+    } // array of config objects which currently can only name a widget.
+  ]
+}
 ```
 
 # roadmap

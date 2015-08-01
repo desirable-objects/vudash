@@ -6,8 +6,8 @@ var Joi = require('joi'),
 var schema = Joi.object().keys({
   extends: Joi.string().optional(),
   dimensions: Joi.object().required().keys({
-    height: Joi.number().required(),
-    width: Joi.number().required()
+    rows: Joi.number().required(),
+    columns: Joi.number().required()
   }),
   template: Joi.object().required().keys({
     html: Joi.string().required(),

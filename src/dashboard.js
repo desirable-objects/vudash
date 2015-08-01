@@ -1,9 +1,19 @@
 var Joi = require('joi'),
     _  = require('lodash-node');
 
-var schema = Joi.array().items(Joi.object().keys({
-  widget: Joi.string().required()
-}));
+var schema = Joi.object().keys({
+  layout: Joi.object().required().keys({
+    height: Joi.number().required(),
+    width: Joi.number().required(),
+    rows: Joi.number().required(),
+    columns: Joi.number().required()
+  }),
+  widgets: Joi.array().items(
+    Joi.object().keys({
+      widget: Joi.string().required()
+    })
+  )
+});
 
 var Dashboard = function(options, available) {
 
@@ -18,10 +28,10 @@ var Dashboard = function(options, available) {
       throw err;
     }
 
-    _.each(validated, function(definition) {
+    dashboard.layout = validated.layout;
 
+    _.each(validated.widgets, function(definition) {
       var widget = available[definition.widget];
-
       dashboard.widgets.push(widget);
     });
 

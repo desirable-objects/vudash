@@ -2,11 +2,11 @@ var truth = false;
 
 module.exports = {
   dimensions: {
-    height: 25,
-    width: 25
+    rows: 1,
+    columns: 1
   },
   template: {
-    html: '<span class="truth">{{truth}}</span>',
+    html: '<h3>Truth is</h3><span class="truth">{{truth}}</span>',
     css: '.truth { font-size: 64px; font-weight: bold; }',
     model: {
       truth: false
