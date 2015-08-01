@@ -9,7 +9,7 @@ A dashboard like dashing, but written in node, with less bumf.
 - Jade is an abomination.
 - Coffeescript is an uneccessary abstraction.
 - dashing-js has more bugs than code
- 
+
 # project status
 It's a prototype, an alpha. Treat it as such. It does work predictably though.
 
@@ -22,13 +22,18 @@ It's a prototype, an alpha. Treat it as such. It does work predictably though.
 - Transitioning background colour for widgets
 - Extending existing widgets (soon!)
 
-# running
+# prerequisites
 - You need a moderately recent version of node.
 - It is transpiled by babel automatically for es6 support.
+- you need a browser which can use websockets, and supports modern html, css and javascript.
+
+# running
 ```
 npm run watch // development, reloading
 node app.js // production
 ```
+
+You can visit your dashboards at http://localhost:8000/&lt;name&gt;.dash where &lt;name&gt; is your dashboard name (in this example, 'dash.dash')
 
 # testing
 There aren't any, it's a prototype. I don't know what I want it to do yet.

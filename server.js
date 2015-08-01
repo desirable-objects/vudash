@@ -14,7 +14,8 @@ server.views({
   },
   path: Path.join(__dirname, 'views'),
   layoutPath: Path.join(__dirname, 'views/layouts'),
-  layout: true
+  layout: true,
+  context: {_wsUrl: 'http://localhost:8011' }
 });
 
 server.route({
@@ -38,6 +39,6 @@ server.register([{
   if (err) {
     console.error('Failed to load plugin:', err);
   }
-});
 
-server.start();
+  server.start();
+});
