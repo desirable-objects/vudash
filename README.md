@@ -43,7 +43,7 @@ All dashboard/widget syntax is validated using Joi, so you'll know if you mess i
 
 # define a widget
 
-```widgets/time.widget.js
+```js
 var moment = require('moment');
 
 module.exports = {
@@ -69,7 +69,7 @@ module.exports = {
 ```
 
 # define a dashboard
-```dashboard.config.json
+```js
 [{
   "widget": "time" // time is the name of the widget above
 }] // array of config objects which currently can only name a widget.
