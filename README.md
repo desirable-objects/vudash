@@ -89,7 +89,7 @@ module.exports = {
 
 Widgets send data by emit()ing a map. Two special properties exist:
 - background sets css properties for the widget's background.
-- lastUpdated sets a last updated property which can be momentised in your layout: ```<span data-last-updated="{{lastUpdated}}"></span>
+- lastUpdated sets a last updated property which can be automatically momentised in your widget's html: ```<span data-last-updated="{{lastUpdated}}"></span>```
 
 # define a dashboard
 ```js
