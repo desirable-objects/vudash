@@ -1,6 +1,8 @@
 # vudash
 A dashboard like dashing, but written in node, with less bumf.
 
+<img src="docs/screenshot.png" style="width: 90%" alt="Vudash" title="Vudash" />
+
 # rationale
 - I'll get to the point. I like dashing, but I don't like ruby.
 - Dashing-js is a stellar effort, but largely abandoned.
