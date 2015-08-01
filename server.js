@@ -14,7 +14,6 @@ server.views({
   path: Path.join(__dirname, 'src', 'views'),
   layoutPath: Path.join(__dirname, 'src', 'views', 'layouts'),
   layout: true,
-  context: {_wsUrl: server.info.uri },
   helpersPath: Path.join(__dirname, 'src', 'views', 'helpers'),
 });
 
@@ -40,6 +39,5 @@ server.register([{
     console.error('Failed to load plugin:', err);
   }
 
-  console.log('Starting server at', server.info.uri);
   server.start();
 });

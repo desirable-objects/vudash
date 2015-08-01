@@ -6,7 +6,7 @@
     <script src="/assets/blocks/blocks.min.js"></script>
     <script src="/assets/moment/min/moment.min.js"></script>
     <script>
-      var socket = io("{{_wsUrl}}");
+      var socket = io(window.location.hostname);
       var app = blocks.Application();
     </script>
     <style type="text/css">
