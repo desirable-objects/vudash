@@ -3,6 +3,7 @@ var Joi = require('joi'),
 
 var schema = Joi.object().keys({
   layout: Joi.object().required().keys({
+    gutter: Joi.number().optional().default(6),
     height: Joi.number().required(),
     width: Joi.number().required(),
     rows: Joi.number().required(),

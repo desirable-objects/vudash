@@ -21,8 +21,8 @@
 
       .grid {
         transition: .3s ease-in-out;
-        width: {{layout.width}}px;
-        height: {{layout.height}}px;
+        width: {{dashboard.layout.width}}px;
+        height: {{dashboard.layout.height}}px;
       }
 
       .grid-item {
@@ -53,10 +53,12 @@
   <body>
     {{{content}}}
     <script>
-      window.addEventListener('resize', function(){
-        minigrid('.grid', '.grid-item');
-      });
-      minigrid('.grid', '.grid-item');
+      function updateGrid() {
+          minigrid('.grid', '.grid-item', {{dashboard.layout.gutter}});
+      };
+
+      window.addEventListener('resize', updateGrid);
+      updateGrid();
     </script>
   </body>
 </html>

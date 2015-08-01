@@ -89,6 +89,7 @@ module.exports = {
 ```js
 {
   "layout": {
+    "gutter": 6, // gutter in px between widgets. Defaults to 6
     "width": 1920, // dashboard width in pixels
     "height": 1080, // dashboard height in pixels
     "columns": 6, // number of columns
@@ -103,6 +104,7 @@ module.exports = {
 ```
 
 # roadmap
+- Build this: https://raw.githubusercontent.com/cubedro/eth-netstats/master/src/images/screenshot.jpg?v=0.0.6
 - Extending existing widgets/dashboards
 - More widgets
 - Flashy widgets for warnings
