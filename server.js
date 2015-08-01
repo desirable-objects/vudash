@@ -12,11 +12,11 @@ server.views({
   engines: {
     html: require('handlebars')
   },
-  path: Path.join(__dirname, 'views'),
-  layoutPath: Path.join(__dirname, 'views/layouts'),
+  path: Path.join(__dirname, 'src', 'views'),
+  layoutPath: Path.join(__dirname, 'src', 'views', 'layouts'),
   layout: true,
   context: {_wsUrl: 'http://localhost:8011' },
-  helpersPath: Path.join(__dirname, 'views/helpers'),
+  helpersPath: Path.join(__dirname, 'src', 'views', 'helpers'),
 });
 
 server.route({
