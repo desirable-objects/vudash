@@ -1,8 +1,52 @@
 <html>
   <head>
     <script src="/assets/minigrid/index.js"></script>
+    <script src="/assets/socket.io-client/socket.io.js"></script>
+    <script src="/assets/lodash/index.js"></script>
+    <script src="/assets/blocks/blocks.min.js"></script>
+    <script>
+      var socket = io('http://localhost:8011');
+      var app = blocks.Application();
+    </script>
+    <style type="text/css">
+
+      body {
+        background-color: #191919;
+      }
+
+      .grid {
+        transition: .3s ease-in-out;
+      }
+
+      .grid-item {
+        position: absolute;
+        background-color: #add8e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+      }
+
+      .grid-item--content {
+        max-width: 50%;
+      }
+
+      .grid-item--top {
+        align-self: flex-start;
+      }
+
+      .grid-item--bottom {
+        align-self: flex-end;
+      }
+    </style>
   </head>
   <body>
     {{{content}}}
+    <script>
+      window.addEventListener('resize', function(){
+        minigrid('.grid', '.grid-item');
+      });
+      minigrid('.grid', '.grid-item');
+    </script>
   </body>
 </html>

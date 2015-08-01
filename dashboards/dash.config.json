@@ -1,3 +1,7 @@
 [{
-  "widget": "test"
+  "widget": "time"
+}, {
+  "widget": "flipper"
+}, {
+  "widget": "gauge"
 }]

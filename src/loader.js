@@ -5,6 +5,8 @@ var Path = require('path'),
 
 var register = function (server, options, next) {
 
+  console.log('Registering widget loader.');
+
   var widgets = {};
 
   fs.readdir('./widgets', function(err, files) {
@@ -12,10 +14,12 @@ var register = function (server, options, next) {
       console.error(err);
     }
 
+    var ws = server.plugins.websocket.socket;
+
     _.each(files, function(widget) {
       var name = widget.split('\.')[0];
       var options = require(Path.join(__dirname, '..', 'widgets', widget));
-      widgets[name] = new Widget(options);
+      widgets[name] = new Widget(options, ws);
     });
 
     server.expose('available', widgets);

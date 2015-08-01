@@ -1,4 +1,7 @@
-var Joi = require('joi');
+var Joi = require('joi'),
+    shortid = require('shortid');
+
+    shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_$');
 
 var schema = Joi.object().keys({
   extends: Joi.string().optional(),
@@ -8,18 +11,19 @@ var schema = Joi.object().keys({
   }),
   template: Joi.object().required().keys({
     html: Joi.string().required(),
-    css: Joi.string().required()
+    css: Joi.string().optional(),
+    model: Joi.object().optional()
   }),
   job: Joi.object().required().keys({
-    schedule: Joi.number().min(1000),
-    script: Joi.func()
+    schedule: Joi.number().optional().min(1000),
+    script: Joi.func().optional()
   })
 }).or('extends', 'dimensions')
 .or('extends', 'dimensions')
 .or('extends', 'template')
 .or('extends', 'job');
 
-var Widget = function(options) {
+var Widget = function(options, socket) {
 
   var sch;
 
@@ -31,6 +35,20 @@ var Widget = function(options) {
     }
 
     sch = validated;
+    sch.id = '_'+shortid.generate();
+    sch.runner = setInterval(function() {
+
+      function emit(data) {
+        try {
+          socket.emit(sch.id, data);
+        } catch (e) {
+          console.error(sch.id, 'tried to broadcast, but no client was connected');
+        }
+      }
+
+      sch.job.script(emit, sch);
+
+    }, sch.job.schedule);
 
   });
 

@@ -6,6 +6,8 @@ Joi = require('joi');
 
 var register = function (server, options, next) {
 
+  console.log('Registering dashboard loader.');
+
   var dashboards = {};
 
   server.route({

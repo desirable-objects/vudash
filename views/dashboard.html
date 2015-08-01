@@ -3,9 +3,42 @@
 </style>
 
 <div class="grid">
-{{#each widgets}}
-  <div class="grid-item">
-    {{{this.template.html}}}
+{{#each dashboard.widgets}}
+
+  <script>
+
+  var Model = app.Model({
+    {{#each this.template.model}}
+      {{@key}}: blocks.observable()
+    {{/each}}
+  });
+
+  app.View("{{this.id}}", Model({
+    {{#each this.template.model}}
+      {{@key}}: "{{this}}"
+    {{/each}}
+  }));
+
+  socket.on("{{this.id}}", function (data) {
+
+    var background = data.background;
+    delete data.background;
+
+    document.getElementById("{{this.id}}").style.background = background;
+
+    _.each(data, function(val, key) {
+      app["{{this.id}}"][key](val);
+    });
+
+  });
+  </script>
+
+  <div data-query="view({{this.id}})" id="{{this.id}}" class="grid-item" style="height: {{this.dimensions.height}}%; width: {{this.dimensions.width}}%">
+    <div class="grid-item--top"></div>
+    <div class="grid-item--content">
+      {{{this.template.html}}}
+    </div>
+    <div class="grid-item--bottom"></div>
   </div>
 {{/each}}
 </div>
