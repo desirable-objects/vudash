@@ -14,6 +14,7 @@ WS.prototype.emit = function(id, data) {
     return;
   }
 
+  data.lastUpdated = new Date().toString();
   this.socket.emit(id, data);
 }
 

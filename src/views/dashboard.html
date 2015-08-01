@@ -11,27 +11,28 @@
     {{#each this.template.model}}
       {{@key}}: blocks.observable([]),
     {{/each}}
+    lastUpdated: blocks.observable()
   });
 
   app.View("{{this.id}}", Model({
     {{#each this.template.model}}
       {{@key}}: {{{valuerender this}}},
     {{/each}}
+    lastUpdated: new Date().toString()
   }));
 
   socket.on("{{this.id}}", function (data) {
 
-    var background = data.background;
-    delete data.background;
+    document.getElementById("{{this.id}}").style.background = data.background;
+    app["{{this.id}}"].lastUpdated(data.lastUpdated);
 
-    document.getElementById("{{this.id}}").style.background = background;
+    delete data.background;
+    delete data.lastUpdated;
 
     _.each(data, function(val, key) {
       if (typeof val === 'object') {
         app["{{this.id}}"][key].reset();
-        _.each(val, function(item) {
-          app["{{this.id}}"][key].push(item);
-        });
+        app["{{this.id}}"][key].addMany(val);
       } else {
         app["{{this.id}}"][key](val);
       }

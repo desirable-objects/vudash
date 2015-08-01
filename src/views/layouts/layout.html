@@ -4,6 +4,7 @@
     <script src="/assets/socket.io-client/socket.io.js"></script>
     <script src="/assets/lodash/index.js"></script>
     <script src="/assets/blocks/blocks.min.js"></script>
+    <script src="/assets/moment/min/moment.min.js"></script>
     <script>
       var socket = io("{{_wsUrl}}");
       var app = blocks.Application();
@@ -59,6 +60,19 @@
 
       window.addEventListener('resize', updateGrid);
       updateGrid();
+    </script>
+    <script>
+
+      var updateds = document.querySelectorAll('*[data-last-updated]');
+
+      setInterval(function() {
+        Array.prototype.forEach.call(updateds, function(el) {
+          var ts = el.getAttribute('data-last-updated');
+          var when = moment(ts).fromNow();
+          el.innerHTML = 'Last updated '+when;
+        });
+      }, 1000);
+
     </script>
   </body>
 </html>

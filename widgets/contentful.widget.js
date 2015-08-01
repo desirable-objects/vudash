@@ -1,5 +1,6 @@
 var request = require('request'),
-    cheerio = require('cheerio');
+    cheerio = require('cheerio'),
+    moment = require('moment');
 
 module.exports = {
   dimensions: {
@@ -8,32 +9,42 @@ module.exports = {
   },
   template: {
     html: `
-      <h3>Contentful API</h3>
-      <dl class="api-status" data-query="each(components)">
-        <dt class="api-status--component">{{component}}</dt>
-        <dd class="api-status--status">{{status}}</dd>
-      </dl>
+      <div class="api-status">
+        <h3>Contentful API</h3>
+        <dl class="api-status__list" data-query="each(components)">
+          <dt class="api-status__list--component">{{component}}</dt>
+          <dd class="api-status__list--status">{{status}}</dd>
+        </dl>
+        <small class="api-status__last-updated" data-last-updated="{{lastUpdated}}"></small>
+      </div>
     `,
     css: `
-      .api-status {
+      .api-status__list {
         font-size: 22px;
         width: 98%;
+        display: block;
+        clear: right;
       }
-      .api-status--component, .api-status--status {
+      .api-status__list--component, .api-status__list--status {
           float: left;
           margin: 0;
       }
-      .api-status--component {
+      .api-status__list--component {
          width: 75%;
          clear: both;
       }
-      .api-status--component::after {
+      .api-status__list--component::after {
         content: ':'
       }
-      .api-status--status {
+      .api-status__list--status {
         width: 25%;
         font-weight: bold;
         text-align: right;
+      }
+      .api-status__last-updated {
+        clear: left;
+        display: block;
+        padding-top: 20px;
       }
     `,
     model: {
