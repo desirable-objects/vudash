@@ -41,5 +41,6 @@ server.register([{
     console.error('Failed to load plugin:', err);
   }
 
+  console.log('Starting server at', server.info.uri);
   server.start();
 });
