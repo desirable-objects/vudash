@@ -6,7 +6,8 @@ module.exports = {
     width: 25
   },
   template: {
-    html: '{{truth}}',
+    html: '<span class="truth">{{truth}}</span>',
+    css: '.truth { font-size: 64px; font-weight: bold; }',
     model: {
       truth: false
     }

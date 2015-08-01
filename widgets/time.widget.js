@@ -7,7 +7,7 @@ module.exports = {
   },
   template: {
     html: '<div class="test">{{time}}</div>',
-    css: '.test { color: #000; text-align: center; font-family: Tahoma, Verdana, Arial; font-size: 30px; }',
+    css: '.test { font-size: 30px; }',
     model: {
       time: new Date()
     }

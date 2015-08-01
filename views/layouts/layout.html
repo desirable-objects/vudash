@@ -12,6 +12,7 @@
 
       body {
         background-color: #191919;
+        font-family: Ubuntu, Verdana, Tahoma, Arial;
       }
 
       .grid {
@@ -19,8 +20,10 @@
       }
 
       .grid-item {
+        transition: background-color 0.5s ease;
         position: absolute;
-        background-color: #add8e6;
+        background-color: #313131;
+        color: #add8e6;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -28,7 +31,8 @@
       }
 
       .grid-item--content {
-        max-width: 50%;
+        max-width: 90%;
+        padding: 10px;
       }
 
       .grid-item--top {

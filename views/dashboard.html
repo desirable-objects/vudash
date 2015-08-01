@@ -9,13 +9,13 @@
 
   var Model = app.Model({
     {{#each this.template.model}}
-      {{@key}}: blocks.observable()
+      {{@key}}: blocks.observable(),
     {{/each}}
   });
 
   app.View("{{this.id}}", Model({
     {{#each this.template.model}}
-      {{@key}}: "{{this}}"
+      {{@key}}: "{{this}}",
     {{/each}}
   }));
 
