@@ -1,5 +1,5 @@
 # vudash
-A dashboard like dashing, but written in node, with less bumf.
+A dashboard like dashing, but written in node, with less bumf. I *really* don't care how it's pronounced.
 
 <img src="docs/screenshot.png" style="width: 90%" alt="Vudash" title="Vudash" />
 
@@ -24,6 +24,9 @@ It's a prototype, an alpha. Treat it as such. It does work predictably though.
 - Dashboard arrangement is simply the config order (see below)
 - Transitioning background colour for widgets
 - Extending existing widgets (soon!)
+
+# demo
+Check out the <a href="http://vudash.herokuapp.com/sample.dashboard">Demo App</a> which is basically this repo, deployed.
 
 # prerequisites
 - You need a moderately recent version of node.
