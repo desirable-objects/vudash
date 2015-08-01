@@ -1,5 +1,3 @@
-var io = require('socket.io')(8011);
-
 var WS = function() {
 }
 
@@ -20,6 +18,7 @@ WS.prototype.emit = function(id, data) {
 
 var register = function (server, options, next) {
 
+  var io = require('socket.io')(server.listener);
   var ws = new WS();
 
   console.log('Registering websocket.');
