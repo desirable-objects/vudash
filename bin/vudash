@@ -7,18 +7,17 @@ fs = require('fs');
 var realDir = path.join(path.dirname(fs.realpathSync(__filename)), '..');
 
 require("babel/register")({
-  only: [realDir + '/src', './dashboards', './widgets']
+  only: [realDir + '/src', './dashboards', './widgets', './server.js']
 });
 
-var lib = path.join(path.dirname(fs.realpathSync(__filename)), '..'),
-    ncp = require('ncp');
+var ncp = require('ncp');
 
 function created(e){
-    if(!e || (e && e.code === 'EEXIST')) {
-      // ignore
-    } else {
-        throw e;
-    }
+  if(!e || (e && e.code === 'EEXIST')) {
+    // ignore
+  } else {
+    throw e;
+  }
 };
 
 function throwSilently(err) {
@@ -33,16 +32,16 @@ if (process.argv.length > 2) {
       fs.mkdir('./dashboards', created);
       fs.mkdir('./widgets', created);
 
-      ncp(lib+'/dashboards', './dashboards', throwSilently);
-      ncp(lib+'/widgets', './widgets', throwSilently);
+      ncp(realDir+'/dashboards', './dashboards', throwSilently);
+      ncp(realDir+'/widgets', './widgets', throwSilently);
 
       console.log('Done! Now run `vudash` to see your new dashboard!');
-
       break;
+
     default:
-      console.error('Usage: vudash [create]: Create a new sample dashboard.');
+        console.error('Usage: vudash [create]: Create a new sample dashboard.');
   }
 
 } else {
-  require(lib+'/app.js');
+  require(realDir+'/app.js');
 }
