@@ -152,11 +152,14 @@ Widgets send data by emit()ing a map. Two special properties exist:
     "columns": 6, // number of columns
     "rows": 4 // number of rows
   },
+  "css": ` // optional css styles for the main layout
+   .grid-item {
+     border: 1px solid #ddd
+   }
+  `,
   "widgets": [
-    {
-      "widget": "time" // time is the name of the widget above
-    } // array of config objects which currently can only name a widget.
-  ]
+    "time" // time is the name of the widget above
+  ] // array of widget names
 }
 ```
 

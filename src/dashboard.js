@@ -9,10 +9,9 @@ var schema = Joi.object().keys({
     rows: Joi.number().required(),
     columns: Joi.number().required()
   }),
+  css: Joi.string().optional(),
   widgets: Joi.array().items(
-    Joi.object().keys({
-      widget: Joi.string().required()
-    })
+    Joi.string()
   )
 });
 
@@ -30,14 +29,15 @@ var Dashboard = function(options, available) {
     }
 
     dashboard.layout = validated.layout;
+    dashboard.css = validated.css;
 
     _.each(validated.widgets, function(definition) {
-      var widget = available[definition.widget];
+      var widget = available[definition];
 
       if (widget) {
         dashboard.widgets.push(widget);
       } else {
-        console.error('Widget specified in dashboard, but was not available', definition.widget);
+        console.error('Widget specified in dashboard, but was not available', definition);
       }
 
     });
