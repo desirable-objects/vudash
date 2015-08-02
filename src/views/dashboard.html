@@ -11,37 +11,36 @@
 {{#each dashboard.widgets}}
 
   <script>
-
-  app.View("{{this.id}}", app.Model({
-    {{#each this.template.model}}
-      {{@key}}: blocks.observable([]),
+    app.View("{{this.id}}", app.Model({
+      {{#each this.template.model}}
+        {{@key}}: blocks.observable([]),
+        {{/each}}
+        lastUpdated: blocks.observable()
+      })({
+      {{#each this.template.model}}
+        {{@key}}: {{{valuerender this}}},
       {{/each}}
-      lastUpdated: blocks.observable()
-    })({
-    {{#each this.template.model}}
-      {{@key}}: {{{valuerender this}}},
-    {{/each}}
-    lastUpdated: new Date().toString()
-  }));
+      lastUpdated: new Date().toString()
+    }));
 
-  socket.on("{{this.id}}", function (data) {
+    socket.on("{{this.id}}", function (data) {
 
-    document.getElementById("{{this.id}}").style.background = data.background;
-    app["{{this.id}}"].lastUpdated(data.lastUpdated);
+      document.getElementById("{{this.id}}").style.background = data.background;
+      app["{{this.id}}"].lastUpdated(data.lastUpdated);
 
-    delete data.background;
-    delete data.lastUpdated;
+      delete data.background;
+      delete data.lastUpdated;
 
-    _.each(data, function(val, key) {
-      if (typeof val === 'object') {
-        app["{{this.id}}"][key].reset();
-        app["{{this.id}}"][key].addMany(val);
-      } else {
-        app["{{this.id}}"][key](val);
-      }
+      _.each(data, function(val, key) {
+        if (typeof val === 'object') {
+          app["{{this.id}}"][key].reset();
+          app["{{this.id}}"][key].addMany(val);
+        } else {
+          app["{{this.id}}"][key](val);
+        }
+      });
+
     });
-
-  });
   </script>
 
   <div data-query="view({{this.id}})" id="{{this.id}}" class="grid-item" style="{{autoscale ../dashboard.layout this.dimensions}}">
