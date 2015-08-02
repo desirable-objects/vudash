@@ -12,14 +12,12 @@
 
   <script>
 
-  var Model = app.Model({
+  app.View("{{this.id}}", app.Model({
     {{#each this.template.model}}
       {{@key}}: blocks.observable([]),
-    {{/each}}
-    lastUpdated: blocks.observable()
-  });
-
-  app.View("{{this.id}}", Model({
+      {{/each}}
+      lastUpdated: blocks.observable()
+    })({
     {{#each this.template.model}}
       {{@key}}: {{{valuerender this}}},
     {{/each}}

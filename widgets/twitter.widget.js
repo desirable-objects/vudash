@@ -37,6 +37,9 @@ module.exports = {
     css: `
     .twitter-mentions {
       font-size: 22px;
+      width: 70%;
+      display: block;
+      margin: auto;
     }
     `,
     model: {
