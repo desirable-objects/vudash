@@ -2,13 +2,20 @@
 
 "use strict";
 var path = require('path'),
-    fs = require('fs'),
-    lib = path.join(path.dirname(fs.realpathSync(__filename)), '..'),
+fs = require('fs');
+
+var realDir = path.join(path.dirname(fs.realpathSync(__filename)), '..');
+
+require("babel/register")({
+  only: [realDir + '/src', './dashboards', './widgets']
+});
+
+var lib = path.join(path.dirname(fs.realpathSync(__filename)), '..'),
     ncp = require('ncp');
 
 function created(e){
     if(!e || (e && e.code === 'EEXIST')) {
-    // ignore
+      // ignore
     } else {
         throw e;
     }
