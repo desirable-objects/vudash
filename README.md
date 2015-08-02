@@ -14,6 +14,7 @@ A dashboard like dashing, but written in node, with less bumf. I *really* don't 
 It's a prototype, an alpha. Treat it as such. It does work predictably though.
 
 # features
+- will happily run on a free heroku instance
 - es6 (for multiline strings, mostly!)
 - all cross-origin requests done server side
 - websockets rather than polling
@@ -165,7 +166,6 @@ Widgets send data by emit()ing a map. Two special properties exist:
 
 # roadmap
 - Build this: https://raw.githubusercontent.com/cubedro/eth-netstats/master/src/images/screenshot.jpg?v=0.0.6
-- Extending existing widgets/dashboards
 - More widgets
 - Flashy widgets for warnings
 

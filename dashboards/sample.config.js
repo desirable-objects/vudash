@@ -25,6 +25,7 @@ module.exports = {
     "time",
     "flipper",
     "gauge",
+    "deploy",
     "heroku",
     "twitter",
     "contentful",

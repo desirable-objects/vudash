@@ -53,7 +53,7 @@ module.exports = {
 
       function emitRandom() {
           var tweets = cache.get(),
-              random = Math.ceil(Math.random() * tweets.length);
+              random = Math.ceil(Math.random() * (tweets.length - 1));
           emit({mention: tweets[random].property1.text});
       }
 
