@@ -1,7 +1,13 @@
 module.exports = function(layout, dimensions) {
 
-  var width = (layout.width / layout.columns) * dimensions.columns + ( layout.gutter * (dimensions.columns - 1));
-  var height = (layout.height / layout.rows) * dimensions.rows + ( layout.gutter * (dimensions.columns - 1));
+  var availableWidth = (layout.width - (layout.gutter * (layout.columns + 1)));
+  var availableHeight = (layout.height - (layout.gutter * (layout.rows + 1)));
+
+  var width = (availableWidth / layout.columns) * dimensions.columns;
+      width += layout.gutter * (dimensions.columns - 1);
+
+  var height = (availableHeight / layout.rows) * dimensions.rows;
+      height += layout.gutter * (dimensions.rows - 1);
 
   return 'width: '+width+'px; height: '+height+'px;'
 }

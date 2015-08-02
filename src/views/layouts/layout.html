@@ -5,6 +5,7 @@
     <script src="/assets/lodash/index.js"></script>
     <script src="/assets/blocks/blocks.min.js"></script>
     <script src="/assets/moment/min/moment.min.js"></script>
+    <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
     <script>
       var socket = io(window.location.hostname + ':' + window.location.port);
       var app = blocks.Application();
@@ -13,12 +14,12 @@
 
       body {
         margin: 0;
+        overflow: hidden;
       }
 
       .grid {
-        transition: .3s ease-in-out;
-        width: {{dashboard.layout.width}}px;
-        height: {{dashboard.layout.height}}px;
+        margin-left: {{dashboard.layout.gutter}};
+        margin-top: {{dashboard.layout.gutter}};
       }
 
       .grid-item {
