@@ -27,17 +27,33 @@ It's a prototype, an alpha. Treat it as such. It does work predictably though.
 - Extending existing widgets (soon!)
 
 # demo
+
 Check out the <a href="http://vudash.herokuapp.com/sample.dashboard">Demo App</a> which is basically this repo, deployed.
+
+# quick start (TL;DR)
+
+You can create a dashboard to get started in seconds. In a new directory:
+
+```
+npm install -g vudash
+vudash create
+npm install
+vudash
+```
+
+Then, edit the contents of ```./widgets``` and ```./dashboards``` to your hearts content.
 
 # prerequisites
 - You need a moderately recent version of node.
 - It is transpiled by babel automatically for es6 support.
 - you need a browser which can use websockets, and supports modern html, css and javascript.
 
-# running
+# developing
+
+Check the project out, run ```npm install```, then:
+
 ```
 npm run watch // development, reloading
-node app.js // production
 ```
 
 You can visit your dashboards at http://localhost:8000/&lt;name&gt;.dashboard where &lt;name&gt; is your dashboard name (in this example, 'sample.dashboard')
