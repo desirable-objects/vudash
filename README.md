@@ -1,7 +1,7 @@
 # vudash
 A dashboard like dashing, but written in node, with less bumf. I *really* don't care how it's pronounced.
 
-<img src="docs/screenshot.png" style="width: 90%" alt="Vudash" title="Vudash" />
+<img src="https://raw.githubusercontent.com/desirable-objects/vudash/master/docs/screenshot.png" style="width: 90%" alt="Vudash" title="Vudash" />
 
 # rationale
 - I'll get to the point. I like dashing, but I don't like ruby.
