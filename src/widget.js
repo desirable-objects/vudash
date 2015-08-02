@@ -42,6 +42,7 @@ var Widget = function(name, options, socket) {
       try {
         socket.emit(sch.id, data);
       } catch (e) {
+        console.log(e);
         console.error(sch.id, 'tried to broadcast, but no client was connected');
       }
     }
