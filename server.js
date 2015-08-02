@@ -1,5 +1,7 @@
 var Hapi = require('hapi'),
-Path = require('path');
+    Path = require('path'),
+    fs = require('fs'),
+    realDir = Path.join(Path.dirname(fs.realpathSync(__filename)));
 
 var server = new Hapi.Server();
 
@@ -22,7 +24,7 @@ server.route({
   path: '/assets/{param*}',
   handler: {
     directory: {
-      path: './node_modules',
+      path: `${realDir}/node_modules`,
       listing: true
     }
   }

@@ -28,9 +28,8 @@ if (process.argv.length > 2) {
 
       ncp(lib+'/dashboards', './dashboards', throwSilently);
       ncp(lib+'/widgets', './widgets', throwSilently);
-      ncp(lib+'/bin/dist', './', throwSilently);
 
-      console.log('Done! Now run `npm install` followed by `vudash` to see your new dashboard!');
+      console.log('Done! Now run `vudash` to see your new dashboard!');
 
       break;
     default:
