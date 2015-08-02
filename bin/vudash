@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+"use strict";
+var path = require('path'),
+    fs = require('fs'),
+    lib = path.join(path.dirname(fs.realpathSync(__filename)), '..'),
+    ncp = require('ncp');
+
+function created(e){
+    if(!e || (e && e.code === 'EEXIST')) {
+    // ignore
+    } else {
+        throw e;
+    }
+};
+
+function throwSilently(err) {
+  if (err) { throw err; }
+}
+
+if (process.argv.length > 2) {
+
+  switch (process.argv[2]) {
+    case 'create':
+
+      fs.mkdir('./dashboards', created);
+      fs.mkdir('./widgets', created);
+
+      ncp(lib+'/dashboards', './dashboards', throwSilently);
+      ncp(lib+'/widgets', './widgets', throwSilently);
+      ncp(lib+'/bin/dist', './', throwSilently);
+
+      console.log('Done! Now run `npm install` followed by `vudash` to see your new dashboard!');
+
+      break;
+    default:
+      console.error('Usage: vudash [create]: Create a new sample dashboard.');
+  }
+
+} else {
+  require(lib+'/app.js');
+}
