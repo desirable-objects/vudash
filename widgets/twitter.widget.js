@@ -27,7 +27,7 @@ var cache = new Cache();
 module.exports = {
   dimensions: {
     rows: 1.2,
-    columns: 2
+    columns: 1
   },
   template: {
     html: `

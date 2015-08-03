@@ -29,6 +29,7 @@ module.exports = {
     "heartbeat",
     "heroku",
     "twitter",
+    "norms",
     "contentful",
     "stormpath"
   ]
