@@ -30,6 +30,10 @@ It's a prototype, an alpha. Treat it as such. It does work predictably though.
 
 Check out the <a href="http://vudash.herokuapp.com/sample.dashboard">Demo App</a> which is basically this repo, deployed.
 
+# known issues
+
+The current standalone release looks for widgets and dashboards in its own dir. This means that currently you must clone this repo to build a dashboard. This will be fixed very soon.
+
 # quick start (TL;DR)
 
 You can create a dashboard to get started in seconds. In a new directory:
