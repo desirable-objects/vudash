@@ -1,4 +1,6 @@
 var Joi = require('joi'),
+    Path = require('path'),
+    fs = require('fs'),
     shortid = require('shortid'),
     _ = require('lodash-node');
     shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_$');

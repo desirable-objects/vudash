@@ -2,15 +2,25 @@
 
 "use strict";
 var path = require('path'),
-fs = require('fs');
+    fs = require('fs'),
+    fsExtra = require('fs-extra');
 
 var realDir = path.join(path.dirname(fs.realpathSync(__filename)), '..');
 
+var es6Files = [];
+    es6Files.push(path.resolve('./widgets'));
+    es6Files.push(path.resolve('./dashboards'));
+    es6Files.push(path.join(realDir, 'src'));
+    es6Files.push(path.join(realDir, 'widgets'));
+    es6Files.push(path.join(realDir, 'dashboards'));
+    es6Files.push('./server.js');
+
 require("babel/register")({
-  only: [realDir + '/src', './dashboards', './widgets', './server.js']
+  only: es6Files
 });
 
-var ncp = require('ncp');
+var ncp = require('ncp'),
+    spawn = require('child_process').spawn;
 
 function created(e){
   if(!e || (e && e.code === 'EEXIST')) {
@@ -24,6 +34,10 @@ function throwSilently(err) {
   if (err) { throw err; }
 }
 
+function logSpawned(data) {
+  console.log('vudash: ' + data);
+}
+
 if (process.argv.length > 2) {
 
   switch (process.argv[2]) {
@@ -35,7 +49,17 @@ if (process.argv.length > 2) {
       ncp(realDir+'/dashboards', './dashboards', throwSilently);
       ncp(realDir+'/widgets', './widgets', throwSilently);
 
+      fsExtra.copySync(path.resolve(__dirname, path.join('..', 'src', 'dist', 'package.json')), 'package.json');
+      var npmProc = spawn('npm', ['install']);
+      npmProc.stdout.on('data', logSpawned);
+
       console.log('Done! Now run `vudash` to see your new dashboard!');
+      break;
+
+    case 'watch':
+      var nodemonProc = spawn('nodemon', ['-e', 'js']);
+      nodemonProc.stdout.on('data', logSpawned);
+
       break;
 
     default:

@@ -9,7 +9,7 @@ var WidgetLoader = function(server) {
 }
 
 WidgetLoader.prototype._loadDefinition = function(name) {
-  return require(Path.join(__dirname, '..', 'widgets', `${name}.widget.js`));
+  return require(Path.join(Path.resolve('./widgets'), `${name}.widget.js`));
 }
 
 WidgetLoader.prototype.load = function(name) {

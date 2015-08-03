@@ -1,14 +1,15 @@
 var Path = require('path'),
-fs = require('fs'),
-_ = require('lodash-node'),
-Dashboard = require('./dashboard'),
-Joi = require('joi');
+    fs = require('fs'),
+    _ = require('lodash-node'),
+    Dashboard = require('./dashboard'),
+    Joi = require('joi');
 
 var register = function (server, options, next) {
 
   console.log('Registering dashboard loader.');
 
-  var dashboards = {};
+  var dashboardPath = Path.resolve('./dashboards'),
+      dashboards = {};
 
   server.route({
     method: 'GET',
@@ -35,7 +36,7 @@ var register = function (server, options, next) {
     }
   });
 
-  fs.readdir('./dashboards', function(err, files) {
+  fs.readdir(dashboardPath, function(err, files) {
 
     if (err) {
       console.error(err);
@@ -44,8 +45,7 @@ var register = function (server, options, next) {
     _.each(files, function(dashboard) {
 
       var name = dashboard.split('\.')[0];
-
-      var options = require(Path.join(__dirname, '..', 'dashboards', dashboard));
+      var options = require(Path.join(dashboardPath, dashboard));
       dashboards[name] = new Dashboard(options, server.plugins.widgets.loader);
 
     });
