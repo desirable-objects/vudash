@@ -15,7 +15,7 @@ var schema = Joi.object().keys({
   )
 });
 
-var Dashboard = function(options, available) {
+var Dashboard = function(options, loader) {
 
   var dashboard = {
     widgets: []
@@ -31,8 +31,8 @@ var Dashboard = function(options, available) {
     dashboard.layout = validated.layout;
     dashboard.css = validated.css;
 
-    _.each(validated.widgets, function(definition) {
-      var widget = available[definition];
+    _.each(validated.widgets, function(name) {
+      var widget = loader.load(name);
 
       if (widget) {
         dashboard.widgets.push(widget);

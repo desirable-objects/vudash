@@ -3,44 +3,41 @@ var Path = require('path'),
     _ = require('lodash-node'),
     Widget = require('./widget');
 
+var WidgetLoader = function(server) {
+  this.ws = server.plugins.websocket.socket;
+  this.widgets = {};
+}
+
+WidgetLoader.prototype._loadDefinition = function(name) {
+  return require(Path.join(__dirname, '..', 'widgets', `${name}.widget.js`));
+}
+
+WidgetLoader.prototype.load = function(name) {
+
+  if (this.widgets[name]) {
+    return this.widgets[name];
+  }
+
+  var options = this._loadDefinition(name);
+
+  if (options.extends) {
+    var base = this._loadDefinition(options.extends);
+    options = _.defaultsDeep(options, base);
+  }
+
+  this.widgets[name] = new Widget(name, options, this.ws);
+  return this.widgets[name];
+
+}
+
 var register = function (server, options, next) {
 
   console.log('Registering widget loader.');
 
-  var widgets = {};
+  var widgetLoader = new WidgetLoader(server);
 
-  fs.readdir('./widgets', function(err, files) {
-    if (err) {
-      console.error(err);
-    }
-
-    var ws = server.plugins.websocket.socket;
-
-    function loadWidget(name) {
-      return require(Path.join(__dirname, '..', 'widgets', `${name}.widget.js`));
-    }
-
-    _.each(files, function(widget) {
-
-      if (_.endsWith(widget, '.widget.js')) {
-
-        var name = widget.split('\.')[0];
-        var options = loadWidget(name);
-
-        if (options.extends) {
-          var base = loadWidget(options.extends);
-          options = _.defaultsDeep(options, base);
-        }
-
-        widgets[name] = new Widget(name, options, ws);
-
-      }
-    });
-
-    server.expose('available', widgets);
-    return next();
-
-  });
+  server.expose('loader', widgetLoader);
+  return next();
 
 };
 

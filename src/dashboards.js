@@ -46,7 +46,7 @@ var register = function (server, options, next) {
       var name = dashboard.split('\.')[0];
 
       var options = require(Path.join(__dirname, '..', 'dashboards', dashboard));
-      dashboards[name] = new Dashboard(options, server.plugins.widgets.available);
+      dashboards[name] = new Dashboard(options, server.plugins.widgets.loader);
 
     });
 
