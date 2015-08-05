@@ -57,7 +57,7 @@ if (process.argv.length > 2) {
       break;
 
     case 'watch':
-      var nodemonProc = spawn('nodemon', ['-e', 'js']);
+      var nodemonProc = spawn('nodemon', ['--exec', 'vudash', '-e', 'js']);
       nodemonProc.stdout.on('data', logSpawned);
 
       break;
