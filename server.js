@@ -35,7 +35,7 @@ server.route({
   path: '/static/{param*}',
   handler: {
     directory: {
-      path: './static'
+      path: './static',
       listing: true
     }
   }
