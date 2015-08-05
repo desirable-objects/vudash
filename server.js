@@ -3,8 +3,6 @@ var Hapi = require('hapi'),
     fs = require('fs'),
     realDir = Path.join(Path.dirname(fs.realpathSync(__filename)));
 
-console.log(realDir);
-
 var server = new Hapi.Server();
 
 server.connection({
@@ -27,6 +25,17 @@ server.route({
   handler: {
     directory: {
       path: Path.join(realDir, 'node_modules'),
+      listing: false
+    }
+  }
+});
+
+server.route({
+  method: 'GET',
+  path: '/static/{param*}',
+  handler: {
+    directory: {
+      path: './static'
       listing: true
     }
   }
