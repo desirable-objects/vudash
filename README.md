@@ -48,7 +48,7 @@ vudash watch
 ```
 
 - To use other node modules in your widgets, simply ```npm install --save <modulename>``` as you would normally.
-- To use static assets like fonts or JS libraries in your own layouts and widgets, place them in a directory called ```./static``` in your local directory and reference them under the url http://<your-domain>/static/*
+- To use static assets like fonts or JS libraries in your own layouts and widgets, place them in a directory called ```./static``` in your local directory and reference them under the url http://&lt;your-domain&gt;/static/*
 
 # prerequisites
 - You need a moderately recent version of node.
