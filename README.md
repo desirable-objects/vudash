@@ -1,4 +1,6 @@
 # vudash
+
+[![Join the chat at https://gitter.im/desirable-objects/vudash](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/desirable-objects/vudash?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 A dashboard like dashing, but written in node, with less bumf. I *really* don't care how it's pronounced.
 
 <img src="https://raw.githubusercontent.com/desirable-objects/vudash/master/docs/screenshot.png" style="width: 90%" alt="Vudash" title="Vudash" />
