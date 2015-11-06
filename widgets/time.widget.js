@@ -1,4 +1,5 @@
-var moment = require('moment');
+var moment = require('moment'),
+    React = require('react');
 
 module.exports = {
   dimensions: {
@@ -6,10 +7,12 @@ module.exports = {
     columns: 1
   },
   template: {
-    html: `
-      <span class="date">{{date}}</span>
-      <span class="time">{{time}}</span>
-    `,
+    element:
+      <div>
+        <span className="date">12/12/15</span>
+        <span className="time">12:12:13</span>
+      </div>
+    ,
     css: '.date, .time { display: block; font-size: 40px; }',
     model: {
       time: new Date(),

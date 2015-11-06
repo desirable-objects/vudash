@@ -9,39 +9,12 @@ server.connection({
   port: process.env.PORT || 8000
 });
 
-server.views({
-  engines: {
-    html: require('handlebars')
-  },
-  path: Path.join(__dirname, 'src', 'views'),
-  layoutPath: Path.join(__dirname, 'src', 'views', 'layouts'),
-  layout: true,
-  helpersPath: Path.join(__dirname, 'src', 'views', 'helpers'),
-});
-
-server.route({
-  method: 'GET',
-  path: '/assets/{param*}',
-  handler: {
-    directory: {
-      path: Path.join(realDir, 'node_modules'),
-      listing: false
-    }
-  }
-});
-
-server.route({
-  method: 'GET',
-  path: '/static/{param*}',
-  handler: {
-    directory: {
-      path: './static',
-      listing: true
-    }
-  }
-});
-
-server.register([{
+server.register([
+{
+  register: require('inert')
+},{
+  register: require('vision')
+},{
   register: require('./src/websocket.js')
 },{
   register: require('./src/loader.js')
@@ -52,5 +25,39 @@ server.register([{
     console.error('Failed to load plugin:', err);
   }
 
-  server.start();
+  server.views({
+    engines: {
+      html: require('handlebars')
+    },
+    path: Path.join(__dirname, 'src', 'views'),
+    layoutPath: Path.join(__dirname, 'src', 'views', 'layouts'),
+    layout: true,
+    helpersPath: Path.join(__dirname, 'src', 'views', 'helpers'),
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/assets/{param*}',
+    handler: {
+      directory: {
+        path: Path.join(realDir, 'node_modules'),
+        listing: false
+      }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/static/{param*}',
+    handler: {
+      directory: {
+        path: './static',
+        listing: true
+      }
+    }
+  });
+
+  server.start(function(err) {
+    console.log('Vudash started.');
+  });
 });

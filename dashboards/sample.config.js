@@ -22,15 +22,6 @@ module.exports = {
     }
   `,
   widgets: [
-    "time",
-    "flipper",
-    "gauge",
-    "deploy",
-    "heartbeat",
-    "heroku",
-    "twitter",
-    "norms",
-    "contentful",
-    "stormpath"
+    "time"
   ]
 }

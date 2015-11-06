@@ -5,6 +5,9 @@ var Joi = require('joi'),
     _ = require('lodash-node');
     shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_$');
 
+var React = require('react');
+var ReactDOMServer = require('react-dom/server');
+
 var schema = Joi.object().keys({
   extends: Joi.string().optional(),
   dimensions: Joi.object().optional().keys({
@@ -12,7 +15,7 @@ var schema = Joi.object().keys({
     columns: Joi.number().required()
   }),
   template: Joi.object().optional().keys({
-    html: Joi.string().required(),
+    element: Joi.object().required(),
     css: Joi.string().optional(),
     model: Joi.object().optional()
   }),
@@ -39,6 +42,14 @@ var Widget = function(name, options, socket) {
 
     sch = validated;
     sch.id = '_'+shortid.generate();
+
+    var component = React.createClass({
+      render: function() {
+        return sch.template.element
+      }
+    });
+
+    sch.component = ReactDOMServer.renderToStaticMarkup(React.createElement(component));
 
     function emit(data) {
       try {
