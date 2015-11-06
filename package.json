@@ -3,6 +3,9 @@
   "version": "1.2.3",
   "keywords": [
     "vudash",
+    "blocks",
+    "alerting",
+    "ha",
     "dashboard",
     "dashing",
     "analytics",
@@ -14,8 +17,7 @@
   "description": "Easy to use, flexible dashboard software for monitoring, analytics, and more.",
   "main": "app.js",
   "scripts": {
-    "test": "mocha ./test/*.test.js",
-    "watch": "nodemon -e js,html"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -28,12 +30,15 @@
     "fs-extra": "^0.22.1",
     "handlebars": "^3.0.3",
     "hapi": "^8.8.1",
+    "hapi-react": "^4.0.0",
     "joi": "^6.6.1",
     "lodash": "^3.10.0",
     "lodash-node": "^3.10.0",
     "masonry-layout": "^3.3.1",
     "moment": "^2.10.6",
     "ncp": "^2.0.0",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
     "request": "^2.60.0",
     "shortid": "^2.2.2",
     "socket.io": "^1.3.6",
@@ -45,5 +50,12 @@
   },
   "bin": {
     "vudash": "./bin/vudash"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/desirable-objects/vudash"
+  },
+  "bugs": {
+    "url": "https://github.com/desirable-objects/vudash/issues"
   }
 }
