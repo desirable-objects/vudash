@@ -8,27 +8,6 @@ var Joi = require('joi'),
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 
-var schema = Joi.object().keys({
-  extends: Joi.string().optional(),
-  dimensions: Joi.object().optional().keys({
-    rows: Joi.number().required(),
-    columns: Joi.number().required()
-  }),
-  template: Joi.object().optional().keys({
-    element: Joi.object().required(),
-    css: Joi.string().optional(),
-    model: Joi.object().optional()
-  }),
-  job: Joi.object().optional().keys({
-    schedule: Joi.number().optional().min(1000),
-    variables: Joi.object().optional(),
-    script: Joi.func().optional()
-  })
-}).or('extends', 'dimensions')
-.or('extends', 'dimensions')
-.or('extends', 'template')
-.or('extends', 'job');
-
 var Widget = function(name, options, socket) {
 
   var sch;

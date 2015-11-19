@@ -1,29 +1,42 @@
 var moment = require('moment'),
     React = require('react');
 
-    var model = {};
+class TimeWidget extends React.Component {
 
-class Widget {
-
-  job(emit) {
-    emit({
-      date: moment().format('h:mm:ss a').toString(),
-      time: moment().format('MMMM Do YYYY').toString()
-    });
-  }
-
-  getElement() {
-      return (
-        <div>
-          <span className="date">{this.model.date}</span>
-          <span className="time">12:12:13</span>
-        </div>
-      )
+  render() {
+    return (
+            <div>
+              <span className="date">12/12/13</span>
+              <span className="time">12:12:13</span>
+            </div>
+          )
   }
 
 }
 
-class TimeWidget extends Widget {
+//     var model = {};
+//
+// class Widget {
+//
+//   job(emit) {
+//     emit({
+//       date: moment().format('h:mm:ss a').toString(),
+//       time: moment().format('MMMM Do YYYY').toString()
+//     });
+//   }
+//
+//   getElement() {
+//       return (
+//         <div>
+//           <span className="date">{this.model.date}</span>
+//           <span className="time">12:12:13</span>
+//         </div>
+//       )
+//   }
+//
+// }
+//
+// class TimeWidget extends Widget {
 
 
     // dimensions: {
@@ -54,33 +67,33 @@ class TimeWidget extends Widget {
     //     });
     //   }
     // }
-}
-
-TimeWidget.component = React.createClass({
-
-  propTypes: {
-    children: React.PropTypes.string
-  },
-
-  render: function() {
-    return (
-      <div>
-            <span className="date">{this.model.date}</span>
-            <span className="time">12:12:13</span>
-      </div>
-    );
-  }
-
-});
-
-
-TimeWidget.dimensions = {
-  rows: 1,
-  columns: 1
-}
-
-TimeWidget.css = ```
-  .date, .time { display: block; font-size: 40px; }
-```
+// }
+//
+// TimeWidget.component = React.createClass({
+//
+//   propTypes: {
+//     children: React.PropTypes.string
+//   },
+//
+//   render: function() {
+//     return (
+//       <div>
+//             <span className="date">{this.model.date}</span>
+//             <span className="time">12:12:13</span>
+//       </div>
+//     );
+//   }
+//
+// });
+//
+//
+// TimeWidget.dimensions = {
+//   rows: 1,
+//   columns: 1
+// }
+//
+// TimeWidget.css = ```
+//   .date, .time { display: block; font-size: 40px; }
+// ```
 
 export default TimeWidget;
