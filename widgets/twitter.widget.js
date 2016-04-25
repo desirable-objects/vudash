@@ -70,7 +70,12 @@ module.exports = {
             return;
           }
 
-          var tweets = JSON.parse(body).results.collection1;
+          try {
+            var tweets = JSON.parse(body).results.collection1;
+          } catch (e) {
+            console.error(err);
+            return;
+          }
 
           cache.set(tweets);
           emitRandom();

@@ -46,7 +46,7 @@ server.register([{
 },{
   register: require('./src/loader.js')
 }, {
-  register: require('./src/dashboards.js')
+  register: require('./src/dashboard-loader.js')
 }], function (err) {
   if (err) {
     console.error('Failed to load plugin:', err);

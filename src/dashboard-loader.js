@@ -48,6 +48,8 @@ var register = function (server, options, next) {
       var options = require(Path.join(dashboardPath, dashboard));
       dashboards[name] = new Dashboard(options, server.plugins.widgets.loader);
 
+      console.log('Making', server.info.uri + '/' + name + '.dashboard', 'available');
+
     });
 
     server.expose('available', dashboards);
