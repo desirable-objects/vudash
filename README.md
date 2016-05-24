@@ -1,4 +1,4 @@
-NOTE: This project is undergoing a ground-up rewrite, the code for which is here: (https://github.com/antony/vudash-core)[https://github.com/antony/vudash-core]
+NOTE: This project is undergoing a ground-up rewrite, the code for which is here: https://github.com/antony/vudash-core
 
 # vudash
 
