@@ -1,3 +1,5 @@
+NOTE: This project is undergoing a ground-up rewrite, the code for which is here: (https://github.com/antony/vudash-core)[https://github.com/antony/vudash-core]
+
 # vudash
 
 [![Join the chat at https://gitter.im/desirable-objects/vudash](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/desirable-objects/vudash?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
